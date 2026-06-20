@@ -1,0 +1,11 @@
+# Internal planning/curation doc — references private infra + people. NEVER publish.
+MANIFEST.md
+# Secrets / keys — BYOK, nothing ships
+*.env
+secrets*
+*.key
+.credentials.json
+# OS noise
+.DS_Store
+# Pro payload is populated per-release after review; keep out until vetted
+payload/

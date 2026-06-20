@@ -1,0 +1,19 @@
+{
+  "name": "zhizi-agent-os",
+  "description": "Zhizi Agent OS — doctrine-enforcing hooks, a curated skill set, and subagent patterns that turn Claude Code into a self-coordinating agent operating system. BYOK, privacy-clean.",
+  "version": "0.1.0",
+  "author": {
+    "name": "starshard-ai"
+  },
+  "homepage": "https://github.com/starshard-ai/zhizi-agent-os",
+  "repository": "https://github.com/starshard-ai/zhizi-agent-os",
+  "license": "MIT",
+  "keywords": [
+    "agent-os",
+    "claude-code",
+    "multi-agent",
+    "doctrine-hooks",
+    "byok",
+    "orchestration"
+  ]
+}

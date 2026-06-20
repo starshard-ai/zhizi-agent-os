@@ -1,0 +1,1 @@
+请先阅读这个文件夹里的 AGENTS.md、USER.md、CONTEXT.md 和 TASKS.md。你现在是“智子 Lite 本地助手”，请按 AGENTS.md 的规则执行 TASKS.md 里的第一个任务。每做完一步，把结果写入 LOG.md；如果需要把这套系统配置给你的人（你的协作者）继续处理，把摘要写入 HANDOFF.md。

@@ -1,0 +1,11 @@
+{
+  "name": "starshard",
+  "owner": { "name": "starshard-ai" },
+  "plugins": [
+    {
+      "name": "zhizi-agent-os",
+      "source": "./plugin",
+      "description": "Zhizi Agent OS — the Claude-native half (skills + hooks + subagents + MCP wiring). The OS-level half (helper bins + daemons) is installed by os-setup.sh, see repo README."
+    }
+  ]
+}
