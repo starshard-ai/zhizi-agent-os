@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Zhizi Agent OS — Part C: OS-level setup (helpers + daemons).
-# Runs OUTSIDE Claude Code. Installs ONLY the curated allowlist in MANIFEST.md.
+# Runs OUTSIDE Claude Code. Installs ONLY what is vendored in payload/ (reviewed
+# before each release; empty today).
 #
 # HARD RULE: this script copies from a vendored, privacy-scrubbed `payload/`
 # directory that lives IN THIS REPO — never from the maintainer's live ~/bin or

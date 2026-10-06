@@ -17,12 +17,17 @@ say "Zhizi uninstaller"
 if command -v claude >/dev/null 2>&1; then
   say "Removing Claude Code plugin…"
   claude plugin uninstall "$PLUGIN" 2>/dev/null || warn "plugin uninstall skipped (not installed, or remove via '/plugin' inside Claude Code)"
+  claude plugin marketplace remove starshard 2>/dev/null && say "  removed plugin marketplace 'starshard'" || true
 else
   warn "claude not on PATH — skipping plugin removal."
 fi
 
 # 2) Remove ~/.local/bin helpers that os-setup.sh installed -----------------
-HERE="$(cd "$(dirname "$0")" 2>/dev/null && pwd || echo "")"
+# Only a real on-disk checkout counts; under `curl ... | bash` there is none.
+HERE=""
+if [ -n "${BASH_SOURCE[0]:-}" ] && [ -f "${BASH_SOURCE[0]}" ]; then
+  HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+fi
 PAYLOAD="$HERE/payload"
 if [ -d "$PAYLOAD/bin" ] && [ -n "$(ls -A "$PAYLOAD/bin" 2>/dev/null)" ]; then
   say "Removing helper scripts from ~/.local/bin…"
@@ -60,6 +65,16 @@ if [ -d "$PAYLOAD/systemd" ] && [ -n "$(ls -A "$PAYLOAD/systemd" 2>/dev/null)" ]
   systemctl --user daemon-reload 2>/dev/null || true
 fi
 
+# 4) Remove the empty control-plane scaffolding os-setup.sh created ----------
+#    rmdir only removes EMPTY directories, so anything you put there stays.
+if [ -d "$HOME/.agent-control-plane" ]; then
+  rmdir "$HOME/.agent-control-plane"/{task-ledger,capability-registry,onboarding} 2>/dev/null || true
+  rmdir "$HOME/.agent-control-plane" 2>/dev/null && say "  removed empty ~/.agent-control-plane" \
+    || warn "~/.agent-control-plane is not empty — left in place"
+fi
+
 say "Uninstall complete."
 printf '\n  Your working folder is UNTOUCHED: %s\n' "$ZHIZI_HOME"
-printf '  Your notes and data are still there. Delete it yourself only if you want to.\n\n'
+printf '  Your notes and data are still there. Delete it yourself only if you want to.\n'
+printf '  (Lite mode only ever created that folder, so removing it fully uninstalls Lite:\n'
+printf '      rm -rf %s\n   — this also deletes your notes.)\n\n' "$ZHIZI_HOME"

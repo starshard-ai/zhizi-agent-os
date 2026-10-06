@@ -1,6 +1,9 @@
 {
   "name": "starshard",
-  "owner": { "name": "starshard-ai" },
+  "owner": {
+    "name": "starshard-ai"
+  },
+  "description": "Zhizi Agent OS plugin marketplace (Pro mode of the zhizi-agent-os installer).",
   "plugins": [
     {
       "name": "zhizi-agent-os",
